@@ -18,6 +18,12 @@ jobs:
       - name: Checkout Codes
         uses: actions/checkout@v4
 
+      - name: Cache /var/lib/docker
+        uses: actions/cache@v4
+        with:
+          path: /var/lib/docker
+          key: ${{ runner.os }}-docker
+
       # Build binaries
       - name: Run CI
         run: make ci
