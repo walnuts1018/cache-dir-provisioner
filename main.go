@@ -32,7 +32,7 @@ var (
 	DefaultNamespace              = "cache-dir-storage"
 	FlagHelperImage               = "helper-image"
 	EnvHelperImage                = "HELPER_IMAGE"
-	DefaultHelperImage            = "walnuts1018/library-busybox:1.32.1"
+	DefaultHelperImage            = "rancher/library-busybox:1.32.1"
 	FlagServiceAccountName        = "service-account-name"
 	DefaultServiceAccount         = "cache-dir-provisioner-service-account"
 	EnvServiceAccountName         = "SERVICE_ACCOUNT_NAME"
@@ -52,7 +52,7 @@ var (
 )
 
 func cmdNotFound(_ *cli.Context, command string) {
-	panic(fmt.Errorf("Unrecognized command: %s", command))
+	panic(fmt.Errorf("unrecognized command: %s", command))
 }
 
 func onUsageError(_ *cli.Context, err error, _ bool) error {
