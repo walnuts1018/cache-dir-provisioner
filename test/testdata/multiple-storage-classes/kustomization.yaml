@@ -10,5 +10,5 @@ patchesStrategicMerge:
 commonLabels:
   app: cache-dir-provisioner
 images:
-- name: ghcr.io/walnuts1018/cache-dir-provisioner
+- name: walnuts1018/cache-dir-provisioner
   newTag: dev
