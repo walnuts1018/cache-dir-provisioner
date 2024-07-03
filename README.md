@@ -39,7 +39,7 @@ kubectl apply -f https://raw.githubusercontent.com/walnuts1018/cache-dir-provisi
 - Development
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/walnuts1018/cache-dir-provisioner/master/deploy/cache-dir-storage.yaml
+kubectl apply -f https://raw.githubusercontent.com/walnuts1018/cache-dir-provisioner/main/deploy/cache-dir-storage.yaml
 ```
 
 Or, use `kustomize` to deploy.
@@ -53,7 +53,7 @@ kustomize build "github.com/walnuts1018/cache-dir-provisioner/deploy?ref=v0.0.28
 - Development
 
 ```
-kustomize build "github.com/walnuts1018/cache-dir-provisioner/deploy?ref=master" | kubectl apply -f -
+kustomize build "github.com/walnuts1018/cache-dir-provisioner/deploy?ref=main" | kubectl apply -f -
 ```
 
 After installation, you should see something like the following:
@@ -75,14 +75,14 @@ kubectl -n cache-dir-storage logs -f -l app=cache-dir-provisioner
 Create a `hostPath` backend Persistent Volume and a pod uses it:
 
 ```
-kubectl create -f https://raw.githubusercontent.com/walnuts1018/cache-dir-provisioner/master/examples/pvc/pvc.yaml
-kubectl create -f https://raw.githubusercontent.com/walnuts1018/cache-dir-provisioner/master/examples/pod/pod.yaml
+kubectl create -f https://raw.githubusercontent.com/walnuts1018/cache-dir-provisioner/main/examples/pvc/pvc.yaml
+kubectl create -f https://raw.githubusercontent.com/walnuts1018/cache-dir-provisioner/main/examples/pod/pod.yaml
 ```
 
 Or, use `kustomize` to deploy them.
 
 ```
-kustomize build "github.com/walnuts1018/cache-dir-provisioner/examples/pod?ref=master" | kubectl apply -f -
+kustomize build "github.com/walnuts1018/cache-dir-provisioner/examples/pod?ref=main" | kubectl apply -f -
 ```
 
 You should see the PV has been created:
@@ -118,13 +118,13 @@ kubectl exec volume-test -- sh -c "echo cache-dir-test > /data/test"
 Now delete the pod using
 
 ```
-kubectl delete -f https://raw.githubusercontent.com/walnuts1018/cache-dir-provisioner/master/examples/pod/pod.yaml
+kubectl delete -f https://raw.githubusercontent.com/walnuts1018/cache-dir-provisioner/main/examples/pod/pod.yaml
 ```
 
 After confirm that the pod is gone, recreated the pod using
 
 ```
-kubectl create -f https://raw.githubusercontent.com/walnuts1018/cache-dir-provisioner/master/examples/pod/pod.yaml
+kubectl create -f https://raw.githubusercontent.com/walnuts1018/cache-dir-provisioner/main/examples/pod/pod.yaml
 ```
 
 Check the volume content:
@@ -137,14 +137,14 @@ cache-dir-test
 Delete the pod and pvc
 
 ```
-kubectl delete -f https://raw.githubusercontent.com/walnuts1018/cache-dir-provisioner/master/examples/pod/pod.yaml
-kubectl delete -f https://raw.githubusercontent.com/walnuts1018/cache-dir-provisioner/master/examples/pvc/pvc.yaml
+kubectl delete -f https://raw.githubusercontent.com/walnuts1018/cache-dir-provisioner/main/examples/pod/pod.yaml
+kubectl delete -f https://raw.githubusercontent.com/walnuts1018/cache-dir-provisioner/main/examples/pvc/pvc.yaml
 ```
 
 Or, use `kustomize` to delete them.
 
 ```
-kustomize build "github.com/walnuts1018/cache-dir-provisioner/examples/pod?ref=master" | kubectl delete -f -
+kustomize build "github.com/walnuts1018/cache-dir-provisioner/examples/pod?ref=main" | kubectl delete -f -
 ```
 
 The volume content stored on the node will be automatically cleaned up. You can check the log of `cache-dir-provisioner-xxx` for details.
@@ -341,7 +341,7 @@ kubectl delete -f https://raw.githubusercontent.com/walnuts1018/cache-dir-provis
 - Development
 
 ```
-kubectl delete -f https://raw.githubusercontent.com/walnuts1018/cache-dir-provisioner/master/deploy/cache-dir-storage.yaml
+kubectl delete -f https://raw.githubusercontent.com/walnuts1018/cache-dir-provisioner/main/deploy/cache-dir-storage.yaml
 ```
 
 ## Debug

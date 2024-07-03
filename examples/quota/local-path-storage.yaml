@@ -88,7 +88,7 @@ spec:
       serviceAccountName: cache-dir-provisioner-service-account
       containers:
         - name: cache-dir-provisioner
-          image: ghcr.io/walnuts1018/cache-dir-provisioner:master-head
+          image: ghcr.io/walnuts1018/cache-dir-provisioner:main-head
           imagePullPolicy: IfNotPresent
           command:
             - cache-dir-provisioner

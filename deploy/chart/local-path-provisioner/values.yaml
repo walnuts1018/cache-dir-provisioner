@@ -5,7 +5,7 @@ commonLabels: {}
 
 image:
   repository: ghcr.io/walnuts1018/cache-dir-provisioner
-  tag: master-head
+  tag: main-head
   pullPolicy: IfNotPresent
 
 helperImage:

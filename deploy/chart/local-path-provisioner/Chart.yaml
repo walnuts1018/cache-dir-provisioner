@@ -1,8 +1,8 @@
 apiVersion: v1
 description: Use HostPath for persistent local storage with Kubernetes
 name: cache-dir-provisioner
-version: master-head
-appVersion: "master-head"
+version: main-head
+appVersion: "main-head"
 keywords:
   - storage
   - hostpath

@@ -10,7 +10,7 @@ if [ -z "$source" ]; then
 fi
 
 if [ -z "$branch" ]; then
-  branch="master"
+  branch="main"
 fi
 
 docker build --build-arg="GIT_REPO=$source" --build-arg="GIT_BRANCH=$branch" -t lpp-distroless-provider:v0.0.1 -f Dockerfile.provisioner .
