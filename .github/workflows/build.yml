@@ -77,6 +77,8 @@ jobs:
           context: ./
           push: true
           platforms: linux/amd64,linux/arm64, linux/arm
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           tags: ghcr.io/walnuts1018/cache-dir-provisioner:${{ env.branch }}-head
           file: package/Dockerfile
 
@@ -87,5 +89,7 @@ jobs:
           context: ./
           push: true
           platforms: linux/amd64,linux/arm64, linux/arm
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           tags: ghcr.io/walnuts1018/cache-dir-provisioner:${{ github.ref_name }}
           file: package/Dockerfile
