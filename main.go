@@ -26,19 +26,19 @@ var (
 	FlagConfigFile                = "config"
 	FlagProvisionerName           = "provisioner-name"
 	EnvProvisionerName            = "PROVISIONER_NAME"
-	DefaultProvisionerName        = "rancher.io/local-path"
+	DefaultProvisionerName        = "driver.walnuts.dev/cache-dir"
 	FlagNamespace                 = "namespace"
 	EnvNamespace                  = "POD_NAMESPACE"
-	DefaultNamespace              = "local-path-storage"
+	DefaultNamespace              = "cache-dir-storage"
 	FlagHelperImage               = "helper-image"
 	EnvHelperImage                = "HELPER_IMAGE"
-	DefaultHelperImage            = "rancher/library-busybox:1.32.1"
+	DefaultHelperImage            = "walnuts1018/library-busybox:1.32.1"
 	FlagServiceAccountName        = "service-account-name"
-	DefaultServiceAccount         = "local-path-provisioner-service-account"
+	DefaultServiceAccount         = "cache-dir-provisioner-service-account"
 	EnvServiceAccountName         = "SERVICE_ACCOUNT_NAME"
 	FlagKubeconfig                = "kubeconfig"
 	DefaultConfigFileKey          = "config.json"
-	DefaultConfigMapName          = "local-path-config"
+	DefaultConfigMapName          = "cache-dir-config"
 	FlagConfigMapName             = "configmap-name"
 	FlagHelperPodFile             = "helper-pod-file"
 	DefaultHelperPodFile          = "helperPod.yaml"
@@ -178,7 +178,7 @@ func findConfigFileFromConfigMap(kubeClient clientset.Interface, namespace, conf
 	}
 	value, ok := cm.Data[key]
 	if !ok {
-		return "", fmt.Errorf("%v is not exist in local-path-config ConfigMap", key)
+		return "", fmt.Errorf("%v is not exist in cache-dir-config ConfigMap", key)
 	}
 	return value, nil
 }

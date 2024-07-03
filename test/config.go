@@ -2,7 +2,7 @@ package test
 
 const (
 	LabelKey   = "app"
-	LabelValue = "local-path-provisioner"
+	LabelValue = "cache-dir-provisioner"
 )
 
 type testConfig struct {

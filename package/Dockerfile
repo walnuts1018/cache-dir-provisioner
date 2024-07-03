@@ -14,5 +14,5 @@ ENV ARCH ${ARCH%/v7}
 RUN apk update
 RUN apk upgrade --no-cache busybox zlib
 
-COPY bin/local-path-provisioner-${ARCH} /usr/bin/local-path-provisioner
-CMD ["local-path-provisioner"]
+COPY bin/cache-dir-provisioner-${ARCH} /usr/bin/cache-dir-provisioner
+CMD ["cache-dir-provisioner"]

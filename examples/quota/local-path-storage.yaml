@@ -1,21 +1,21 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: local-path-storage
+  name: cache-dir-storage
 
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: local-path-provisioner-service-account
-  namespace: local-path-storage
+  name: cache-dir-provisioner-service-account
+  namespace: cache-dir-storage
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: local-path-provisioner-role
-  namespace: local-path-storage
+  name: cache-dir-provisioner-role
+  namespace: cache-dir-storage
 rules:
   - apiGroups: [""]
     resources: ["pods"]
@@ -25,7 +25,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: local-path-provisioner-role
+  name: cache-dir-provisioner-role
 rules:
   - apiGroups: [""]
     resources: ["nodes", "persistentvolumeclaims", "configmaps", "pods", "pods/log"]
@@ -44,54 +44,54 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: local-path-provisioner-bind
-  namespace: local-path-storage
+  name: cache-dir-provisioner-bind
+  namespace: cache-dir-storage
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: local-path-provisioner-role
+  name: cache-dir-provisioner-role
 subjects:
   - kind: ServiceAccount
-    name: local-path-provisioner-service-account
-    namespace: local-path-storage
+    name: cache-dir-provisioner-service-account
+    namespace: cache-dir-storage
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: local-path-provisioner-bind
+  name: cache-dir-provisioner-bind
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: local-path-provisioner-role
+  name: cache-dir-provisioner-role
 subjects:
   - kind: ServiceAccount
-    name: local-path-provisioner-service-account
-    namespace: local-path-storage
+    name: cache-dir-provisioner-service-account
+    namespace: cache-dir-storage
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: local-path-provisioner
-  namespace: local-path-storage
+  name: cache-dir-provisioner
+  namespace: cache-dir-storage
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: local-path-provisioner
+      app: cache-dir-provisioner
   template:
     metadata:
       labels:
-        app: local-path-provisioner
+        app: cache-dir-provisioner
     spec:
-      serviceAccountName: local-path-provisioner-service-account
+      serviceAccountName: cache-dir-provisioner-service-account
       containers:
-        - name: local-path-provisioner
-          image: rancher/local-path-provisioner:master-head
+        - name: cache-dir-provisioner
+          image: ghcr.io/walnuts1018/cache-dir-provisioner:master-head
           imagePullPolicy: IfNotPresent
           command:
-            - local-path-provisioner
+            - cache-dir-provisioner
             - --debug
             - start
             - --config
@@ -107,14 +107,14 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: local-path-config
+            name: cache-dir-config
 
 ---
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: local-path
-provisioner: rancher.io/local-path
+  name: cache-dir
+provisioner: driver.walnuts.dev/cache-dir
 volumeBindingMode: WaitForFirstConsumer
 reclaimPolicy: Delete
 
@@ -122,15 +122,15 @@ reclaimPolicy: Delete
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: local-path-config
-  namespace: local-path-storage
+  name: cache-dir-config
+  namespace: cache-dir-storage
 data:
   config.json: |-
     {
             "nodePathMap":[
             {
                     "node":"DEFAULT_PATH_FOR_NON_LISTED_NODES",
-                    "paths":["/opt/local-path-provisioner"]
+                    "paths":["/opt/cache-dir-provisioner"]
             }
             ]
     }
@@ -180,12 +180,12 @@ data:
       - name: helper-pod
         image: busybox
         imagePullPolicy: IfNotPresent
-
+---
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: local-path-config
-  namespace: local-path-storage
+  name: cache-dir-config
+  namespace: cache-dir-storage
 data:
   config.json: |-
     {

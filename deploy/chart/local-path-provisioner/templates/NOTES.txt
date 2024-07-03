@@ -3,7 +3,7 @@ You can create a hostpath-backed persistent volume with a persistent volume clai
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: local-path-pvc
+  name: cache-dir-pvc
 spec:
   accessModes:
     - ReadWriteOnce

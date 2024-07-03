@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: local-path-provisioner
-  namespace: local-path-storage
+  name: cache-dir-provisioner
+  namespace: cache-dir-storage
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: local-path-provisioner
+      app: cache-dir-provisioner
   template:
     metadata:
       labels:
-        app: local-path-provisioner
+        app: cache-dir-provisioner
     spec:
-      serviceAccountName: local-path-provisioner-service-account
+      serviceAccountName: cache-dir-provisioner-service-account
       containers:
-        - name: local-path-provisioner
-          image: rancher/local-path-provisioner:master-head
+        - name: cache-dir-provisioner
+          image: ghcr.io/walnuts1018/cache-dir-provisioner:master-head
           imagePullPolicy: Always
           command:
-            - local-path-provisioner
+            - cache-dir-provisioner
             - --debug
             - start
             - --config
@@ -35,4 +35,4 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: local-path-config
+            name: cache-dir-config

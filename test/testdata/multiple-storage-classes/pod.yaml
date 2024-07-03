@@ -17,7 +17,7 @@ spec:
   volumes:
   - name: volv
     persistentVolumeClaim:
-      claimName: local-path-pvc
+      claimName: cache-dir-pvc
   - name: volv-shared
     persistentVolumeClaim:
-      claimName: local-path-shared-pvc
+      claimName: cache-dir-shared-pvc

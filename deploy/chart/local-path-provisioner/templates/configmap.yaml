@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.configmap.name }}
   namespace: {{ .Release.Namespace }}
   labels:
-{{ include "local-path-provisioner.labels" . | indent 4 }}
+{{ include "cache-dir-provisioner.labels" . | indent 4 }}
 data:
   config.json: |-
     {{- $config := dict }}

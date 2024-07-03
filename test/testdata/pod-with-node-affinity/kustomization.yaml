@@ -6,7 +6,7 @@ resources:
 patches:
 - path: patch.yaml
 commonLabels:
-  app: local-path-provisioner
+  app: cache-dir-provisioner
 images:
-- name: rancher/local-path-provisioner
+- name: ghcr.io/walnuts1018/cache-dir-provisioner
   newTag: dev

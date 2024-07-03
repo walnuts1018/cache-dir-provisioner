@@ -3,9 +3,9 @@ kind: PersistentVolumeClaim
 metadata:
   labels:
     app: test
-  name: local-path-pvc
+  name: cache-dir-pvc
 spec:
-  storageClassName: local-path-custom-path-pattern
+  storageClassName: cache-dir-custom-path-pattern
   accessModes:
     - ReadWriteOnce
   resources:

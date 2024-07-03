@@ -1,4 +1,4 @@
-module github.com/rancher/local-path-provisioner
+module github.com/walnuts1018/cache-dir-provisioner
 
 go 1.21
 

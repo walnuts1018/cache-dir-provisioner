@@ -7,7 +7,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOncePod
-  storageClassName: local-path
+  storageClassName: cache-dir
   resources:
     requests:
       storage: 128Mi

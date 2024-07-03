@@ -12,11 +12,11 @@ kind: StorageClass
 metadata:
   name: {{ $name }}
   labels:
-{{ include "local-path-provisioner.labels" $dot | indent 4 }}
+{{ include "cache-dir-provisioner.labels" $dot | indent 4 }}
   annotations:
     storageclass.kubernetes.io/is-default-class: "{{ $values.storageClass.defaultClass }}"
     defaultVolumeType: "{{ $values.storageClass.defaultVolumeType }}"
-provisioner: {{ template "local-path-provisioner.provisionerName" $dot }}
+provisioner: {{ template "cache-dir-provisioner.provisionerName" $dot }}
 volumeBindingMode: {{ $values.storageClass.volumeBindingMode }}
 reclaimPolicy: {{ $values.storageClass.reclaimPolicy }}
 allowVolumeExpansion: true

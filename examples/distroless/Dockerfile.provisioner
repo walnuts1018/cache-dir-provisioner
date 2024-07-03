@@ -11,11 +11,11 @@ ENV GIT_BRANCH=$GIT_BRANCH
 RUN mkdir /src && \
     git clone --depth 1 --branch "${GIT_BRANCH}" "${GIT_REPO}" /src && \
     cd /src && \
-    CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-X main.VERSION=dev -extldflags -static -s -w" -o /local-path-provisioner && \
-    chmod 777 /local-path-provisioner
+    CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-X main.VERSION=dev -extldflags -static -s -w" -o /cache-dir-provisioner && \
+    chmod 777 /cache-dir-provisioner
 
 FROM scratch
 
-COPY --from=builder /local-path-provisioner /local-path-provisioner
+COPY --from=builder /cache-dir-provisioner /cache-dir-provisioner
 
-ENTRYPOINT [ "/local-path-provisioner" ]
+ENTRYPOINT [ "/cache-dir-provisioner" ]

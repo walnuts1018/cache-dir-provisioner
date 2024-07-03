@@ -6,7 +6,7 @@ source=$1
 branch=$2
 
 if [ -z "$source" ]; then
-  source="https://github.com/rancher/local-path-provisioner.git"
+  source="https://github.com/walnuts1018/cache-dir-provisioner.git"
 fi
 
 if [ -z "$branch" ]; then

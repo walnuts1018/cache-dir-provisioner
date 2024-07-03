@@ -1,10 +1,10 @@
-# Default values for local-path-provisioner.
+# Default values for cache-dir-provisioner.
 
 replicaCount: 1
 commonLabels: {}
 
 image:
-  repository: rancher/local-path-provisioner
+  repository: ghcr.io/walnuts1018/cache-dir-provisioner
   tag: master-head
   pullPolicy: IfNotPresent
 
@@ -29,7 +29,7 @@ storageClass:
   create: true
 
   ## Set a provisioner name. If unset, a name will be generated.
-  # provisionerName: rancher.io/local-path
+  # provisionerName: driver.walnuts.dev/cache-dir
 
   ## Set StorageClass as the default StorageClass
   ## Ignored if storageClass.create is false
@@ -40,7 +40,7 @@ storageClass:
 
   ## Set a StorageClass name
   ## Ignored if storageClass.create is false
-  name: local-path
+  name: cache-dir
 
   ## ReclaimPolicy field of the class, which can be either Delete or Retain
   reclaimPolicy: Delete
@@ -66,7 +66,7 @@ storageClass:
 nodePathMap:
   - node: DEFAULT_PATH_FOR_NON_LISTED_NODES
     paths:
-      - /opt/local-path-provisioner
+      - /opt/cache-dir-provisioner
 
 # `sharedFileSystemPath` allows the provisioner to use a filesystem that is mounted on all
 # nodes at the same time. In this case all access modes are supported: `ReadWriteOnce`,
@@ -147,7 +147,7 @@ affinity: {}
 
 configmap:
   # specify the config map name
-  name: local-path-config
+  name: cache-dir-config
   # specify the custom script for setup and teardown
   setup: |-
     #!/bin/sh

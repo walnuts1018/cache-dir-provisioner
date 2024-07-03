@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "local-path-provisioner.fullname" . }}
+  name: {{ include "cache-dir-provisioner.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-{{ include "local-path-provisioner.labels" . | indent 4 }}
+{{ include "cache-dir-provisioner.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "local-path-provisioner.name" . }}
+      app.kubernetes.io/name: {{ include "cache-dir-provisioner.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
@@ -18,13 +18,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-{{ include "local-path-provisioner.labels" . | indent 8 }}
+{{ include "cache-dir-provisioner.labels" . | indent 8 }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      serviceAccountName: {{ template "local-path-provisioner.serviceAccountName" . }}
+      serviceAccountName: {{ template "cache-dir-provisioner.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -38,15 +38,15 @@ spec:
         {{- end }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
-            - local-path-provisioner
+            - cache-dir-provisioner
             - --debug
             - start
             - --config
             - /etc/config/config.json
             - --service-account-name
-            - {{ template "local-path-provisioner.serviceAccountName" . }}
+            - {{ template "cache-dir-provisioner.serviceAccountName" . }}
             - --provisioner-name
-            - {{ template "local-path-provisioner.provisionerName" . }}
+            - {{ template "cache-dir-provisioner.provisionerName" . }}
             - --helper-image
           {{- if .Values.privateRegistry.registryUrl }}
             - "{{ .Values.privateRegistry.registryUrl }}/{{ .Values.helperImage.repository }}:{{ .Values.helperImage.tag }}"

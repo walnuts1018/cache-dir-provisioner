@@ -1,8 +1,8 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: local-path-shared
-provisioner: rancher.io/local-path
+  name: cache-dir-shared
+provisioner: driver.walnuts.dev/cache-dir
 volumeBindingMode: Immediate
 reclaimPolicy: Delete
 

@@ -5,8 +5,8 @@ resources:
 - ../../deploy
 
 configMapGenerator:
-- name: local-path-config
-  namespace: local-path-storage
+- name: cache-dir-config
+  namespace: cache-dir-storage
   behavior: merge
   files:
   - helperPod.yaml

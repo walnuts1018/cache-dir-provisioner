@@ -1,22 +1,22 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: local-path-config
-  namespace: local-path-storage
+  name: cache-dir-config
+  namespace: cache-dir-storage
 data:
   config.json: |-
     {
             "storageClassConfigs":{
-                   "local-path": {
+                   "cache-dir": {
                           "nodePathMap": [
                           {
                                   "node":"DEFAULT_PATH_FOR_NON_LISTED_NODES",
-                                  "paths":["/opt/local-path-provisioner"]
+                                  "paths":["/opt/cache-dir-provisioner"]
                           }
                           ]
                    },
-                   "local-path-shared": {
-                          "sharedFilesystemPath": "/opt/local-path-provisioner-shared"
+                   "cache-dir-shared": {
+                          "sharedFilesystemPath": "/opt/cache-dir-provisioner-shared"
                    }
             }
     }

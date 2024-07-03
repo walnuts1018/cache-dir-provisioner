@@ -6,9 +6,9 @@ resources:
 - pod.yaml
 - pvc.yaml
 patchesStrategicMerge:
-- local-path-config.yaml
+- cache-dir-config.yaml
 commonLabels:
-  app: local-path-provisioner
+  app: cache-dir-provisioner
 images:
-- name: rancher/local-path-provisioner
+- name: ghcr.io/walnuts1018/cache-dir-provisioner
   newTag: dev

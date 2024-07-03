@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: local-path-storage
+  name: cache-dir-storage
 ---
 
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: local-path
-provisioner: rancher.io/local-path
+  name: cache-dir
+provisioner: driver.walnuts.dev/cache-dir
 volumeBindingMode: WaitForFirstConsumer
 reclaimPolicy: Delete
 allowVolumeExpansion: true
@@ -18,19 +18,19 @@ allowVolumeExpansion: true
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: local-path-config
-  namespace: local-path-storage
+  name: cache-dir-config
+  namespace: cache-dir-storage
 data:
   config.json: |-
         {
                 "nodePathMap":[
                 {
                         "node":"DEFAULT_PATH_FOR_NON_LISTED_NODES",
-                        "paths":["/opt/local-path-provisioner"]
+                        "paths":["/opt/cache-dir-provisioner"]
                 },
                 {
                         "node":"yasker-lp-dev1",
-                        "paths":["/opt/local-path-provisioner", "/data1"]
+                        "paths":["/opt/cache-dir-provisioner", "/data1"]
                 },
                 {
                         "node":"yasker-lp-dev3",

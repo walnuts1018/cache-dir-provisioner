@@ -6,9 +6,9 @@ source $(dirname $0)/version
 cd $(dirname $0)/..
 
 mkdir -p dist/artifacts
-cp bin/local-path-provisioner* dist/artifacts/
+cp bin/cache-dir-provisioner* dist/artifacts/
 
-IMAGE=${REPO}/local-path-provisioner:${TAG}
+IMAGE=${REPO}/cache-dir-provisioner:${TAG}
 DOCKERFILE=package/Dockerfile
 if [ -e ${DOCKERFILE}.${ARCH} ]; then
     DOCKERFILE=${DOCKERFILE}.${ARCH}
@@ -17,4 +17,4 @@ fi
 buildx build --load -t ${IMAGE} -f ${DOCKERFILE} .
 echo Built ${IMAGE}
 
-echo ${IMAGE} > ./bin/latest_image
+echo ${IMAGE} >./bin/latest_image

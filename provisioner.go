@@ -676,7 +676,7 @@ func (p *LocalPathProvisioner) createHelperPod(action ActionType, cmd []string, 
 		"-a", string(action)}
 
 	// If it already exists due to some previous errors, the pod will be cleaned up later automatically
-	// https://github.com/rancher/local-path-provisioner/issues/27
+	// https://github.com/walnuts1018/cache-dir-provisioner/issues/27
 	logrus.Infof("create the helper pod %s into %s", helperPod.Name, p.namespace)
 	pod, err := p.kubeClient.CoreV1().Pods(p.namespace).Create(context.TODO(), helperPod, metav1.CreateOptions{})
 	if err != nil && !k8serror.IsAlreadyExists(err) {

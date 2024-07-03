@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: local-path-rwx-example
+  name: cache-dir-rwx-example
   labels:
-    app: local-path-rwx-example
+    app: cache-dir-rwx-example
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: local-path-rwx-example
+      app: cache-dir-rwx-example
   template:
     metadata:
       labels:
-        app: local-path-rwx-example
+        app: cache-dir-rwx-example
     spec:
       topologySpreadConstraints:
       - maxSkew: 1
@@ -20,7 +20,7 @@ spec:
         whenUnsatisfiable: DoNotSchedule
         labelSelector:
           matchLabels:
-            app: local-path-rwx-example
+            app: cache-dir-rwx-example
       containers:
       - name: pause
         image: busybox
@@ -37,4 +37,4 @@ spec:
       volumes:
       - name: volv
         persistentVolumeClaim:
-          claimName: local-path-rwx-example
+          claimName: cache-dir-rwx-example

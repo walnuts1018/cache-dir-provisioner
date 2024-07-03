@@ -10,12 +10,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: local-path-rwx-example
+  name: cache-dir-rwx-example
 spec:
   accessModes:
   - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
-  storageClassName: local-path
+  storageClassName: cache-dir
   volumeMode: Filesystem
